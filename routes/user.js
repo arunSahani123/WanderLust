@@ -11,6 +11,10 @@ router.route("/signup")
 .get(userController.renderSignupForm)
 .post(wrapAsync(userController.signup));
 
+router.route("/")
+.get(userController.renderLoginForm)
+.post(saveRedirectUrl,passport.authenticate("local",{failureRedirect: '/login', failureFlash:true}),userController.login)
+
 router.route("/login")
 .get(userController.renderLoginForm)
 .post(saveRedirectUrl,passport.authenticate("local",{failureRedirect: '/login', failureFlash:true}),userController.login)
@@ -18,8 +22,9 @@ router.route("/login")
 
 
 
-
-
+// router.route('/')
+// .get(User)
+// .post(User);
 
 // router.get("/login",userController.renderLoginForm)
 
